@@ -19,12 +19,13 @@ body {
 
 .dot {
   position: absolute;
-  width: 3px;
-  height: 3px;
+  width: 5px;
+  height: 5px;
+  background: rgba(255,255,255,0.3);
   border-radius: 50%;
-  transition: transform 0.3s ease;
-  background: rgba(255,107,107,1); /* Use your card colors */
+  transition: transform 0.3s ease-out;
 }
+
 
 .carousel-container {
     width: 100vw;
