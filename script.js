@@ -40,9 +40,11 @@ document.addEventListener('mouseleave', () => {
 
 // Physics Parameters
 const physics = {
-    repulsion: 0.15,
-    returnStrength: 0.05,
-    friction: 0.85
+// Find the physics object and modify these values:
+const physics = {
+    repulsion: 0.12, // Reduced from 0.15 (weaker initial push)
+    returnStrength: 0.04, // Reduced from 0.05 (slower return)
+    friction: 0.88 // Increased from 0.85 (faster slowdown)
 };
 
 // Animation Loop
