@@ -60,9 +60,7 @@ body {
 .card-title {
     font-family: "Gasoek One", sans-serif;
     font-size: 3.5rem;
-    letter-spacing: 2px;
-    -webkit-text-stroke: 1px #000;
-    color: white;
+    color: black;
     margin: 0 0 1rem;
 }
 
