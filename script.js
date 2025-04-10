@@ -18,3 +18,10 @@ window.addEventListener('mousemove', (e) => {
   e.preventDefault();
   carousel.scrollLeft = currentScroll + (startPos - e.pageX);
 });
+
+carousel.addEventListener('touchstart', (e) => {
+  isDragging = true;
+  startPos = e.touches[0].clientX;
+  currentScroll = carousel.scrollLeft;
+});
+
