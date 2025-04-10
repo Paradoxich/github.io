@@ -14,7 +14,7 @@ body {
 
 .carousel {
     display: flex;
-    gap: 30px;
+    gap: 16px;
     padding: 20px 0;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
