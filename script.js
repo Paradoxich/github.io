@@ -26,7 +26,7 @@ for(let i = 0; i < cols * rows; i++) {
 const mm = new MagnetMouse({
   magnet: {
     element: '.dot',
-    distance: 80, // Match your 80px request
+    distance: 160, // Match your 80px request
     position: 'center',
     enabled: true
   },
@@ -34,6 +34,13 @@ const mm = new MagnetMouse({
 });
 
 mm.init();
+
+// Disable on mobile
+if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+  mm.destroy();
+  document.querySelectorAll('.dot').forEach(dot => dot.remove());
+}
+
 
 
 // Arrow controls
