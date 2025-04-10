@@ -43,6 +43,7 @@ body {
     content: '';
     position: absolute;
     inset: 0;
+    background-image: url('Light-Halftone-Screen-Medium.png');
     background: linear-gradient(45deg, 
         rgba(255,255,255,0.1), 
         rgba(0,0,0,0.2));
@@ -53,7 +54,7 @@ body {
     content: '';
     position: absolute;
     inset: 0;
-    background-image: url('Light-Halftone-Screen-Medium.png');
+
     opacity: 0.3;
 }
 
