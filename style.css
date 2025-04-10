@@ -7,23 +7,12 @@ body {
 }
 
 /* Dot Background Styles */
-#dotContainer {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.dot {
-  position: absolute;
-  width: 5px;
-  height: 5px;
-  background: rgba(255,255,255,0.3);
-  border-radius: 50%;
-  transition: transform 0.3s ease-out;
+#dotCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    pointer-events: none;
 }
 
 
