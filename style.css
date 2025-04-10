@@ -55,8 +55,8 @@ body {
     position: absolute;
     inset: 0;
 background-image: url('bedge-grunge.png');
-    opacity: 0.3;
-     mix-blend-mode: multiply;
+    opacity: 0.7;
+     mix-blend-mode: soft-light;
 }
 
 .card-title {
