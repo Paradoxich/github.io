@@ -54,7 +54,7 @@ body {
     content: '';
     position: absolute;
     inset: 0;
-background-image: url('Light-Halftone-Screen-Medium.png');
+background-image: url('bedge-grunge.png');
     opacity: 0.3;
      mix-blend-mode: multiply;
 }
