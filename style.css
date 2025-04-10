@@ -22,7 +22,6 @@ body {
     overflow-x: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
-     overflow: visible !important; /* Disables scrollbar containment */
     width: fit-content; /* Lets content expand beyond 90vw */
 }
 
