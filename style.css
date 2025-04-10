@@ -1,0 +1,56 @@
+body {
+  margin: 0;
+  background: #000;
+  font-family: 'Avenir Next', sans-serif;
+}
+
+.carousel-container {
+  padding: 4rem 0;
+  margin: 2rem auto;
+  max-width: 1200px;
+}
+
+.carousel {
+  display: flex;
+  gap: 30px;
+  padding: 2rem 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+.card {
+  flex: 0 0 400px;
+  height: 500px;
+  border-radius: 15px;
+  padding: 2rem;
+  position: relative;
+  transition: transform 0.3s ease;
+  scroll-snap-align: center;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, 
+    rgba(255,255,255,0.1), 
+    rgba(0,0,0,0.2));
+  mix-blend-mode: overlay;
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('data:image/png;base64,iVBORw0KGgo...');
+  opacity: 0.3;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  z-index: 2;
+}
+
+/* Remaining CSS from Search Result [2] */
