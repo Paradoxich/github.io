@@ -10,10 +10,9 @@ body {
     width: 90vw;
     padding: 4rem 0;
     position: relative;
-    margin-left: auto;    /* Pushes container to right */
-    margin-right: 0;      /* Removes default right margin */
-    right: -5vw;          /* Compensates for 10% remaining viewport width */
+    overflow:visible;
 }
+
 .carousel {
     display: flex;
     gap: 16px;
