@@ -1,27 +1,31 @@
 const carousel = document.querySelector('.carousel');
-let isDragging = false;
-let startPos = 0;
-let currentScroll = 0;
+const prevButton = document.querySelector('.prev');
+const nextButton = document.querySelector('.next');
+const cardWidth = 400; // Should match your CSS card width
+const gap = 30;
 
-carousel.addEventListener('mousedown', (e) => {
-  isDragging = true;
-  startPos = e.pageX;
-  currentScroll = carousel.scrollLeft;
+// Arrow controls
+prevButton.addEventListener('click', () => {
+    carousel.scrollBy({
+        left: -(cardWidth + gap),
+        behavior: 'smooth'
+    });
 });
 
-window.addEventListener('mouseup', () => {
-  isDragging = false;
+nextButton.addEventListener('click', () => {
+    carousel.scrollBy({
+        left: cardWidth + gap,
+        behavior: 'smooth'
+    });
 });
 
-window.addEventListener('mousemove', (e) => {
-  if (!isDragging) return;
-  e.preventDefault();
-  carousel.scrollLeft = currentScroll + (startPos - e.pageX);
-});
+// Hide arrows at scroll boundaries
+const updateArrows = () => {
+    prevButton.style.visibility = carousel.scrollLeft > 0 ? 'visible' : 'hidden';
+    nextButton.style.visibility = carousel.scrollLeft < 
+        (carousel.scrollWidth - carousel.clientWidth - 10) ? 'visible' : 'hidden';
+};
 
-carousel.addEventListener('touchstart', (e) => {
-  isDragging = true;
-  startPos = e.touches[0].clientX;
-  currentScroll = carousel.scrollLeft;
-});
-
+carousel.addEventListener('scroll', updateArrows);
+window.addEventListener('resize', updateArrows);
+updateArrows(); // Initial check
