@@ -7,8 +7,8 @@ body {
 }
 
 .carousel-container {
-    width: 90vw;
-    padding: 4rem 0;
+    width: 100vw;
+    padding:0;
     position: relative;
     overflow: visible; /* Key property */
     margin: 0 auto; /* Centers container */
@@ -16,8 +16,7 @@ body {
 .carousel {
     display: flex;
     gap: 16px;
-    padding: 20px 0;
-    scroll-snap-type: x mandatory;
+    padding: 80px;
     scroll-behavior: smooth;
     overflow-x: auto;
     -ms-overflow-style: none;
