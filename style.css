@@ -54,7 +54,7 @@ body {
     content: '';
     position: absolute;
     inset: 0;
-background-image: url('bedge-grunge.png');
+background-image: url('cardboard.png');
     opacity: 0.7;
 
 }
