@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     background: #000;
-    overflow-x: visible !important; /* Overrides previous hidden setting */
+    overflow-x: hidden !important;
     font-family: 'Avenir Next', sans-serif;
 }
 
@@ -22,7 +22,6 @@ body {
     overflow-x: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    width: fit-content; /* Lets content expand beyond 90vw */
 }
 
 .carousel::-webkit-scrollbar {
