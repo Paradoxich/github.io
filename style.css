@@ -31,7 +31,6 @@ body {
     flex: 0 0 calc(40% - 30px);
     min-width: 400px;
     height: 500px;
-    margin-left: 5vw;
     scroll-snap-align: start;
     transition: transform 0.3s ease;
     position: relative;
