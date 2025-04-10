@@ -6,10 +6,31 @@ body {
     font-family: 'Avenir Next', sans-serif;
 }
 
+/* Dot Background Styles */
+#dotContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.dot {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
 .carousel-container {
     width: 100vw;
     padding:0;
     position: relative;
+      z-index: 1;
     overflow: visible; /* Key property */
     margin: 0 auto; /* Centers container */
 }
