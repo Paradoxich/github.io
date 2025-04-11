@@ -168,3 +168,40 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
+
+/*card scale*/
+
+// Get the carousel and card elements
+const carousel = document.querySelector('.carousel');
+const cards = document.querySelectorAll('.card');
+
+// Set up the scaling effect on scroll
+carousel.addEventListener('scroll', () => {
+  // Get the carousel's dimensions and center point
+  const carouselRect = carousel.getBoundingClientRect();
+  const carouselCenter = carouselRect.left + carouselRect.width / 2;
+
+  // Track if we've found a center card yet
+  let foundCenter = false;
+  
+  // Process cards from left to right
+  cards.forEach((card) => {
+    const cardRect = card.getBoundingClientRect();
+    const cardCenter = cardRect.left + cardRect.width / 2;
+    const distance = Math.abs(cardCenter - carouselCenter);
+    
+    // Clear any inline transform to avoid conflicts with hover
+    card.style.transform = '';
+    
+    // If this is the card closest to center (or first one very close to center)
+    if (distance < 100 && !foundCenter) {
+      // Add a class instead of inline style to work with existing hover
+      card.classList.add('card-focus');
+      foundCenter = true;
+    } else {
+      card.classList.remove('card-focus');
+    }
+  });
+});
+
+
