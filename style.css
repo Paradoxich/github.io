@@ -48,8 +48,6 @@ body {
     min-width: 320px;
     height: 500px;
     scroll-snap-align: start;
-    transition: transform 0.3s ease;
-    position: relative;
     overflow: hidden;
     border-radius: 20px;
     padding: 2rem;
