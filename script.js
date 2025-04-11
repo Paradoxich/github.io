@@ -95,80 +95,29 @@ window.addEventListener('resize', () => {
 update();
 
 
+const carousel = document.querySelector('.carousel');
+let isDown = false;
+let startX;
+let scrollLeft;
 
-//3d carusel
-class RisographCarousel {
-  constructor() {
-    this.carousel = document.querySelector('.carousel');
-    this.cards = document.querySelectorAll('.card');
-    this.currentAngle = 0;
-    this.targetAngle = 0;
-    this.radius = 500;
-    this.isDragging = false;
-    this.init();
-  }
+carousel.addEventListener('mousedown', (e) => {
+  isDown = true;
+  startX = e.pageX - carousel.offsetLeft;
+  scrollLeft = carousel.scrollLeft;
+});
 
-  init() {
-    this.positionCards();
-    this.addEventListeners();
-  }
+carousel.addEventListener('mouseleave', () => {
+  isDown = false;
+});
 
-  positionCards() {
-    const total = this.cards.length;
-    this.cards.forEach((card, i) => {
-      const angle = (i * (360 / total)) + this.currentAngle;
-      const rad = angle * Math.PI / 180;
-      
-      const x = Math.sin(rad) * this.radius;
-      const z = Math.cos(rad) * this.radius;
-       const scale = 0.7 + 0.3 * (z + this.radius) / (2 * this.radius);
-      
-      card.style.transform = `
-        translateX(${x}px)
-        translateZ(${z}px)
-        scale(${scale})
-      `;
-      card.style.opacity = z > -this.radius/2 ? 1 : 0.6;
-    });
-  }
+carousel.addEventListener('mouseup', () => {
+  isDown = false;
+});
 
-  addEventListeners() {
-    // Horizontal scroll
-    document.addEventListener('wheel', e => {
-      e.preventDefault();
-      this.targetAngle += e.deltaX * 0.15;
-      this.animateCards();
-    }, { passive: false });
-
-    // Touch events for mobile
-    let touchStartX = 0;
-    document.addEventListener('touchstart', e => {
-      touchStartX = e.touches[0].clientX;
-    });
-    
-    document.addEventListener('touchmove', e => {
-      e.preventDefault();
-      const delta = e.touches[0].clientX - touchStartX;
-      this.targetAngle += delta * 0.5;
-      touchStartX = e.touches[0].clientX;
-      this.animateCards();
-    });
-  }
-
-  animateCards() {
-    const animate = () => {
-      this.currentAngle += (this.targetAngle - this.currentAngle) * 0.05;
-      this.positionCards();
-      
-      if (Math.abs(this.targetAngle - this.currentAngle) > 0.3) {
-        requestAnimationFrame(animate);
-      }
-    };
-    requestAnimationFrame(animate);
-  }
-}
-
-// Initialize when DOM loads
-document.addEventListener('DOMContentLoaded', () => {
-  new RisographCarousel();
+carousel.addEventListener('mousemove', (e) => {
+  if (!isDown) return;
+  e.preventDefault();
+  const x = e.pageX - carousel.offsetLeft;
+  const walk = (x - startX) * 2;
+  carousel.scrollLeft = scrollLeft - walk;
 });
