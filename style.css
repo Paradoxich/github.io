@@ -45,8 +45,7 @@ body {
   position: relative;
   padding:32px;
     scroll-snap-align: none;
-  transition: none; /* Let GSAP handle transitions */
-  transform-style: preserve-3d;
+  transition: none !important;
   will-change: transform, opacity;
         
 }
