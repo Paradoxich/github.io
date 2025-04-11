@@ -133,7 +133,7 @@ class RisographCarousel {
       
       const x = Math.sin(rad) * this.radius;
       const z = Math.cos(rad) * this.radius;
-      const scale = z > 0 ? 1 + (z / this.radius) * 0.3 : 1;
+      const scale = z > 0 ? 1 + (z / this.radius) * 0.1 : 1;
       const opacity = z > 0 ? 1 : 0.5;
 
       card.style.transform = `
@@ -148,7 +148,7 @@ class RisographCarousel {
 
   handleWheel(e) {
     e.preventDefault();
-    this.currentAngle += e.deltaY * 0.15;
+    this.currentAngle += e.deltaY * 0.3;
     this.positionCards();
   }
 
