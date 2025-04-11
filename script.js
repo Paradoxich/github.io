@@ -94,6 +94,7 @@ window.addEventListener('resize', () => {
 // Start Animation
 update();
 
+
 // Card scaling on scroll
 function createScrollObserver() {
   const options = {
@@ -119,7 +120,7 @@ function handleIntersect(entries) {
     
     // Calculate scale based on visibility ratio
     const scale = 1 + (0.15 * visibleRatio);
-    const opacity = 0.6 + (0.4 * visibleRatio);
+    const opacity = 1 + (0.4 * visibleRatio);
     
     card.style.transform = `scale(${scale})`;
     card.style.opacity = opacity;
