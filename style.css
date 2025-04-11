@@ -40,8 +40,8 @@ body {
 .card {
   flex: 0 0 400px;
   height: 500px;
-  border-radius: 15px;
-  scroll-snap-align: start;
+  border-radius: 20px;
+  scroll-snap-align: none;
   position: relative;
   padding:32px;
         
