@@ -54,6 +54,8 @@ body {
   justify-content: space-between;
   overflow: hidden;
   opacity: 0;
+    transform: translateX(100%) scale(0.8);
+  animation: cardEntry 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
 
 
 }
