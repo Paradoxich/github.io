@@ -148,7 +148,7 @@ class RisographCarousel {
 
   handleWheel(e) {
     e.preventDefault();
-    this.currentAngle += e.deltaY * 0.3;
+    this.currentAngle += e.deltaY * 0.05;
     this.positionCards();
   }
 
