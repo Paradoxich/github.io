@@ -95,29 +95,79 @@ window.addEventListener('resize', () => {
 update();
 
 
-const carousel = document.querySelector('.carousel');
-let isDown = false;
-let startX;
-let scrollLeft;
+// Carusel scroll
+document.addEventListener('DOMContentLoaded', () => {
+  const carousel = document.querySelector('.carousel');
+  const cards = document.querySelectorAll('.card');
+  let scrollLeft = 0;
+  let targetScroll = 0;
+  let animating = false;
 
-carousel.addEventListener('mousedown', (e) => {
-  isDown = true;
-  startX = e.pageX - carousel.offsetLeft;
-  scrollLeft = carousel.scrollLeft;
-});
+  // Set initial positions
+  gsap.set(cards, {
+    x: (i) => i * (400 + 30), // card width + gap
+    scale: 0.9,
+    opacity: 0.6,
+    transformOrigin: 'center center'
+  });
 
-carousel.addEventListener('mouseleave', () => {
-  isDown = false;
-});
+  // Horizontal scroll handler
+  function handleScroll(e) {
+    targetScroll += e.deltaY * 0.5; // Adjust sensitivity
+    targetScroll = Math.max(targetScroll, 0);
+    targetScroll = Math.min(targetScroll, carousel.scrollWidth - carousel.clientWidth);
+    
+    if (!animating) {
+      animating = true;
+      requestAnimationFrame(animate);
+    }
+  }
 
-carousel.addEventListener('mouseup', () => {
-  isDown = false;
-});
+  // Animation loop
+  function animate() {
+    const diff = targetScroll - scrollLeft;
+    scrollLeft += diff * 0.1; // Smoothing factor
+    
+    cards.forEach((card, i) => {
+      const cardRect = card.getBoundingClientRect();
+      const containerCenter = window.innerWidth / 2;
+      const cardCenter = cardRect.left + cardRect.width/2;
+      const distance = Math.abs(containerCenter - cardCenter);
+      
+      // Scale based on distance from center
+      const scale = Math.max(0.9, 1 - distance * 0.001);
+      // Opacity based on distance
+      const opacity = Math.max(0.6, 1 - distance * 0.002);
+      // Parallax effect
+      const parallax = (containerCenter - cardCenter) * 0.2;
 
-carousel.addEventListener('mousemove', (e) => {
-  if (!isDown) return;
-  e.preventDefault();
-  const x = e.pageX - carousel.offsetLeft;
-  const walk = (x - startX) * 2;
-  carousel.scrollLeft = scrollLeft - walk;
+      gsap.to(card, {
+        x: `+=${parallax}`,
+        scale: scale,
+        opacity: opacity,
+        duration: 0.8,
+        ease: 'power2.out'
+      });
+    });
+
+    if (Math.abs(diff) > 0.5) {
+      requestAnimationFrame(animate);
+    } else {
+      animating = false;
+    }
+  }
+
+  // Event listeners
+  window.addEventListener('wheel', handleScroll, { passive: false });
+  
+  // Optional: Add touch handling
+  let touchStartX = 0;
+  window.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+  });
+  
+  window.addEventListener('touchmove', e => {
+    handleScroll({ deltaY: (touchStartX - e.touches[0].clientX) * 2 });
+    touchStartX = e.touches[0].clientX;
+  });
 });
