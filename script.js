@@ -105,11 +105,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const gap = 32; // Match CSS gap value
   
   // Set initial positions
-  gsap.set(cards, {
-    x: (i) => i * (cardWidth + gap),
-    scale: 0.9,
-    opacity: 0.8 // Increased minimum opacity
-  });
+gsap.set(cards, {
+  x: (i) => i * (cardWidth + gap),
+  scale: 0.95, // Less scaling for closer appearance
+  opacity: 0.9 // Higher minimum opacity
+});
+
 
   function handleScroll(e) {
     targetScroll += (e.deltaY || e.deltaX) * 0.5;
