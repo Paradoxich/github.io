@@ -25,11 +25,13 @@ body {
   perspective: 2500px;
 }
 .carousel {
-  position: absolute;
-  left:35%;
-  top: 20%;
-  transform-style: preserve-3d;
-  transition: transform 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  display: flex;
+  gap: 30px;
+  padding: 20px 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .carousel::-webkit-scrollbar {
@@ -37,13 +39,11 @@ body {
 }
 
 .card {
-  position: absolute;
-  width: 400px;
+  flex: 0 0 400px;
   height: 500px;
-  border-radius: 20px;
-  transform-style: preserve-3d;
-  transition: transform 0.8s ease, opacity 0.8s ease;
-  backface-visibility: hidden;
+  border-radius: 15px;
+  scroll-snap-align: start;
+  position: relative;
   padding:32px;
         
 }
