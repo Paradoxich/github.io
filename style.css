@@ -40,7 +40,7 @@ body {
 
 .card {
     flex: 0 0 calc(40% - 30px);
-    min-width: 400px;
+    min-width: 320px;
     height: 500px;
     scroll-snap-align: start;
     transition: transform 0.3s ease;
