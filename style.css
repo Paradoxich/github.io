@@ -25,10 +25,8 @@ body {
 }
 .carousel {
   display: flex;
-  gap: 32px; /* Reduced from 30px */
-  padding: 120px 0; /* Remove the horizontal padding */
-  justify-content: center; /* Center cards instead */
-  perspective: 1500px;
+  gap: 30px;
+  padding: 120px 120px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -ms-overflow-style: none;
@@ -40,15 +38,12 @@ body {
 }
 
 .card {
-  flex: 0 0 400px; /* Must match cardWidth in JS */
-  margin: 0; /* Eliminate any additional spacing */
-  padding: 32px; /* Keep padding internal only */
-  height: 500px;  
+  flex: 0 0 400px;
+  height: 500px;
   border-radius: 20px;
-  position: relative;
   scroll-snap-align: none;
-  transition: none !important;
-  will-change: transform, opacity;
+  position: relative;
+  padding:32px;
         
 }
 
@@ -68,12 +63,14 @@ body {
     mix-blend-mode: overlay;
 }
 
-/*.card::after {
+.card::after {
     content: '';
     position: absolute;
     inset: 0;
+/*background-image: url('cardboard.png');*/
     opacity: 0.7;
-} */
+
+}
 
 .card-title {
     font-family: "Gasoek One", sans-serif;
