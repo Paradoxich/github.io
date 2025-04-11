@@ -72,11 +72,13 @@ body {
 }
 
 .card-title {
-    font-family: "Gasoek One", sans-serif;
-    font-size: 3.5rem;
-    color: black;
-    margin: 0 0 1rem;
-    line-height: 4rem;
+  font-family: "Gasoek One", sans-serif;
+  font-size: 3.5rem;
+  color: black;
+  margin: 0 0 8px;
+  line-height: 4rem;
+  position: relative;
+  z-index: 1;
 }
 
 .card-description {
