@@ -47,7 +47,6 @@ body {
     flex: 0 0 calc(40% - 30px);
     min-width: 320px;
     height: 500px;
-    scroll-snap-align: start;
     overflow: hidden;
     border-radius: 20px;
     padding: 2rem;
