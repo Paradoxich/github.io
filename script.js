@@ -6,7 +6,7 @@ let height = canvas.height = window.innerHeight;
 
 // Dot Configuration
 const dots = [];
-const spacing = 24;
+const spacing = 32;
 const mouseRadius = 60;
 const dotRadius = 1;
 
