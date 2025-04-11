@@ -105,7 +105,7 @@ class RisographCarousel {
     this.currentAngle = 0;
     this.isDragging = false;
     this.startX = 0;
-    this.radius = 1000; // Adjust circle radius
+    this.radius = 500; // Adjust circle radius
     
     this.init();
     this.positionCards();
