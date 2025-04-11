@@ -49,6 +49,7 @@ body {
   scroll-snap-align: none;
   position: relative;
   padding: 32px;
+    transition: padding 0.9s ease-out;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
