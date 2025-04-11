@@ -67,14 +67,12 @@ body {
     mix-blend-mode: overlay;
 }
 
-.card::after {
+/*.card::after {
     content: '';
     position: absolute;
     inset: 0;
-/*background-image: url('cardboard.png');*/
     opacity: 0.7;
-
-}
+} */
 
 .card-title {
     font-family: "Gasoek One", sans-serif;
