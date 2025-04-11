@@ -78,7 +78,7 @@ function update() {
         // Draw dot
         ctx.beginPath();
         ctx.arc(dot.x, dot.y, dotRadius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255,107,107,0.4)'; // Use your color
+        ctx.fillStyle = 'rgba(255,238,173,1)'; // Use your color
         ctx.fill();
     });
     
