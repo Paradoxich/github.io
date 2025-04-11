@@ -95,79 +95,81 @@ window.addEventListener('resize', () => {
 update();
 
 
-// Carusel scroll
+//Carousel scroll
 document.addEventListener('DOMContentLoaded', () => {
   const carousel = document.querySelector('.carousel');
-  const cards = document.querySelectorAll('.card');
-  let scrollLeft = 0;
+  const cards = gsap.utils.toArray('.card');
+  let currentScroll = 0;
   let targetScroll = 0;
-  let animating = false;
-
+  const cardWidth = 400; // Match your CSS card width
+  const gap = 30;
+  
   // Set initial positions
   gsap.set(cards, {
-    x: (i) => i * (400 + 30), // card width + gap
+    x: (i) => i * (cardWidth + gap),
     scale: 0.9,
-    opacity: 0.6,
-    transformOrigin: 'center center'
+    opacity: 0.6
   });
 
-  // Horizontal scroll handler
+  // Handle scroll input
   function handleScroll(e) {
-    targetScroll += e.deltaY * 0.5; // Adjust sensitivity
-    targetScroll = Math.max(targetScroll, 0);
-    targetScroll = Math.min(targetScroll, carousel.scrollWidth - carousel.clientWidth);
+    targetScroll += (e.deltaY || e.deltaX) * 0.5; // Handle both directions
+    targetScroll = gsap.utils.clamp(0, carousel.scrollWidth - carousel.clientWidth, targetScroll);
     
-    if (!animating) {
-      animating = true;
+    if (!this.isAnimating) {
+      this.isAnimating = true;
       requestAnimationFrame(animate);
     }
   }
 
-  // Animation loop
+  // Smooth animation loop
   function animate() {
-    const diff = targetScroll - scrollLeft;
-    scrollLeft += diff * 0.1; // Smoothing factor
+    currentScroll += (targetScroll - currentScroll) * 0.08; // Adjusted smoothing
     
     cards.forEach((card, i) => {
-      const cardRect = card.getBoundingClientRect();
-      const containerCenter = window.innerWidth / 2;
-      const cardCenter = cardRect.left + cardRect.width/2;
-      const distance = Math.abs(containerCenter - cardCenter);
+      const cardCenter = i * (cardWidth + gap) - currentScroll + cardWidth/2;
+      const containerCenter = carousel.clientWidth / 2;
+      const distance = Math.abs(cardCenter - containerCenter);
       
-      // Scale based on distance from center
-      const scale = Math.max(0.9, 1 - distance * 0.001);
-      // Opacity based on distance
-      const opacity = Math.max(0.6, 1 - distance * 0.002);
-      // Parallax effect
-      const parallax = (containerCenter - cardCenter) * 0.2;
-
+      // Calculate scale and opacity
+      const scale = gsap.utils.mapRange(0, 600, 1, 0.8, distance);
+      const opacity = gsap.utils.mapRange(0, 600, 1, 0.4, distance);
+      
       gsap.to(card, {
-        x: `+=${parallax}`,
         scale: scale,
         opacity: opacity,
-        duration: 0.8,
+        duration: 0.6,
         ease: 'power2.out'
       });
     });
 
-    if (Math.abs(diff) > 0.5) {
+    if (Math.abs(targetScroll - currentScroll) > 1) {
       requestAnimationFrame(animate);
     } else {
-      animating = false;
+      this.isAnimating = false;
     }
   }
 
   // Event listeners
   window.addEventListener('wheel', handleScroll, { passive: false });
   
-  // Optional: Add touch handling
-  let touchStartX = 0;
-  window.addEventListener('touchstart', e => {
-    touchStartX = e.touches[0].clientX;
-  });
-  
+  // Touch handling
+  let touchStart = 0;
+  window.addEventListener('touchstart', e => touchStart = e.touches[0].clientX);
   window.addEventListener('touchmove', e => {
-    handleScroll({ deltaY: (touchStartX - e.touches[0].clientX) * 2 });
-    touchStartX = e.touches[0].clientX;
+    handleScroll({ deltaX: touchStart - e.touches[0].clientX });
+    touchStart = e.touches[0].clientX;
+  });
+
+  // Window resize handler
+  window.addEventListener('resize', () => {
+    gsap.set(carousel, { overflow: 'hidden' });
+    requestAnimationFrame(() => {
+      gsap.set(carousel, { clearProps: 'overflow' });
+      currentScroll = targetScroll = Math.min(targetScroll, carousel.scrollWidth - carousel.clientWidth);
+    });
   });
 });
+
+  
+     
