@@ -157,7 +157,7 @@ class RisographCarousel {
 
   animateCards() {
     const animate = () => {
-      this.currentAngle += (this.targetAngle - this.currentAngle) * 0.1;
+      this.currentAngle += (this.targetAngle - this.currentAngle) * 0.05;
       this.positionCards();
       
       if (Math.abs(this.targetAngle - this.currentAngle) > 0.5) {
