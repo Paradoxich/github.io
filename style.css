@@ -21,7 +21,7 @@ body {
   position: relative;
   height: 100vh;
   width: 100vw;
-  overflow: hidden; /* Added to contain animated cards */
+  overflow: hidden;
 }
 
 .carousel {
@@ -53,16 +53,15 @@ body {
   opacity: 0;
   transform: translateX(100%) scale(0.8);
   animation: cardEntry 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-transform-origin: center;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transform-origin: center;
 }
 
-/* And add the hover state */
+/* Hover Effect */
 .card:hover {
-  transform: scale(1.1);
+  transform: translateX(0) scale(1.1) !important;
   z-index: 2;
 }
-
 
 /* Sequential Animation Delays */
 .card:nth-child(1) { animation-delay: 0.2s; }
@@ -83,7 +82,7 @@ transform-origin: center;
   }
 }
 
-/* Modern browser support for initial state */
+/* Modern browser initial state */
 @starting-style {
   .card {
     opacity: 0;
@@ -91,7 +90,7 @@ transform-origin: center;
   }
 }
 
-/* Rest of your existing styles remain unchanged */
+/* Visual Elements */
 .card::before {
   content: '';
   position: absolute;
@@ -119,7 +118,6 @@ transform-origin: center;
   z-index: 1;
 }
 
-/* ... (keep all other existing styles below exactly as they are) */
 .card-image img {
   width: 100%;
   display: block;
@@ -127,19 +125,17 @@ transform-origin: center;
   height: 100%;
 }
 
-/* Card Text Container */
 .card-text {
   margin-top: auto;
   position: relative;
   z-index: 2;
 }
 
-/* Title */
 .card-title {
-    -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-weight: normal !important; /* Force normal weight */
-  letter-spacing: 0.01em; /* Slight adjustment for better spacing */
+  font-weight: normal !important;
+  letter-spacing: 0.01em;
   font-family: "Gasoek One", sans-serif;
   font-size: 3.5rem;
   color: black;
@@ -147,16 +143,14 @@ transform-origin: center;
   line-height: 4rem;
   position: relative;
   z-index: 1;
-  
 }
 
-/* Subtitle */
 .card-subtitle {
   font-family: "Sora", sans-serif;
   font-weight: 300;
   font-size: 14px;
   font-style: italic;
-  letter-spacing:0.1rem;
+  letter-spacing: 0.1rem;
   color: black;
   margin: 0 0 12px;
   line-height: 1.4;
@@ -164,7 +158,6 @@ transform-origin: center;
   z-index: 1;
 }
 
-/* Description */
 .card-description {
   font-family: "Sora", sans-serif;
   font-weight: 300;
@@ -184,3 +177,33 @@ transform-origin: center;
 .card:nth-child(5) { background: #FFEEAD; }
 .card:nth-child(6) { background: #D4A5A5; }
 
+/* Controls */
+.controls {
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px;
+}
+
+.arrow-btn {
+  background: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: opacity 0.3s ease;
+}
+
+.arrow-btn:hover {
+  opacity: 0.8;
+}
+
+/* Performance Optimization */
+@media (prefers-reduced-motion: no-preference) {
+  .card {
+    will-change: transform;
+  }
+}
