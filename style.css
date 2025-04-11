@@ -49,7 +49,6 @@ body {
   scroll-snap-align: none;
   position: relative;
   padding: 32px;
-    transition: padding 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -62,17 +61,6 @@ body {
 }
 
 
-/* Add this to your CSS file */
-.card-focus {
-padding:48px;
-  z-index: 1;
-  transition: transform 0.3s ease;
-}
-
-/* Adjust existing hover effect to work with our new class */
-.card:hover {
-padding:48px;
-}
 
 
 
