@@ -8,7 +8,7 @@ let height = canvas.height = window.innerHeight;
 const dots = [];
 const spacing = 24;
 const mouseRadius = 60;
-const dotRadius = 2;
+const dotRadius = 1;
 
 // Create Dot Grid
 for(let y = spacing/2; y < height; y += spacing) {
