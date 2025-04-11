@@ -92,7 +92,8 @@ body {
 /* Image styling */
 .card-image {
   width: 100%;
-  margin: 16px 0 24px 0;
+  height:60%;
+  margin: 0 0 24px 0;
   border-radius: 8px;
   overflow: hidden;
   position: relative;
@@ -103,7 +104,7 @@ body {
   width: 100%;
   display: block;
   object-fit: cover;
-  height: 180px;
+  height: 100%;
 }
 
 /* Two-column text layout */
