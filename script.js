@@ -95,42 +95,4 @@ window.addEventListener('resize', () => {
 update();
 
 
-// Card scaling on scroll
-function createScrollObserver() {
-  const options = {
-    root: document.querySelector('.carousel-container'),
-    rootMargin: '0px',
-    threshold: buildThresholdList()
-  };
-
-  const observer = new IntersectionObserver(handleIntersect, options);
-  document.querySelectorAll('.card').forEach(card => observer.observe(card));
-}
-
-function buildThresholdList() {
-  let thresholds = [];
-  for (let i=0; i<=1.0; i+=0.01) thresholds.push(i);
-  return thresholds;
-}
-
-function handleIntersect(entries) {
-  entries.forEach(entry => {
-    const card = entry.target;
-    const visibleRatio = entry.intersectionRatio;
-    
-    // Calculate scale based on visibility ratio
-    const scale = 1 + (0.15 * visibleRatio);
-    const opacity = 1 + (0.4 * visibleRatio);
-    
-    card.style.transform = `scale(${scale})`;
-    card.style.opacity = opacity;
-    
-    // Bring active card to front
-    card.style.zIndex = visibleRatio > 0.5 ? 2 : 1;
-  });
-}
-
-// Initialize when DOM loads
-document.addEventListener('DOMContentLoaded', createScrollObserver);
-
 
