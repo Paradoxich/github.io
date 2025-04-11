@@ -44,6 +44,7 @@ body {
   transform-style: preserve-3d;
   transition: transform 0.8s ease, opacity 0.8s ease;
   backface-visibility: hidden;
+  padding:32px;
         
 }
 
