@@ -97,6 +97,24 @@ update();
 
 
 
+// Example JavaScript trigger for dynamic cards
+function addNewCard(content) {
+  const card = document.createElement('div');
+  card.className = 'carousel-card';
+  card.textContent = content;
+  
+  // Trigger animation after DOM insertion
+  setTimeout(() => {
+    card.style.animation = 'cardEntry 0.5s ease-in-out forwards';
+  }, 0);
+  
+  carouselContainer.appendChild(card);
+}
+
+
+
+
+
 
 
 
