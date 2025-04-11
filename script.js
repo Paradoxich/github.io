@@ -6,8 +6,8 @@ let height = canvas.height = window.innerHeight;
 
 // Dot Configuration
 const dots = [];
-const spacing = 25;
-const mouseRadius = 80;
+const spacing = 24;
+const mouseRadius = 60;
 const dotRadius = 2;
 
 // Create Dot Grid
