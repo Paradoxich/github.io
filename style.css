@@ -105,8 +105,8 @@ body {
 
 /* Subtitle */
 .card-subtitle {
-  font-family: 'Urbanist', sans-serif;
-  font-weight: 500;
+  font-family: "Sora", sans-serif;
+  font-weight: 400;
   font-size: 16px;
   font-style: italic;
   letter-spacing:0.1rem;
@@ -119,7 +119,7 @@ body {
 
 /* Description */
 .card-description {
-  font-family: 'Urbanist', sans-serif;
+  font-family: "Sora", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.5;
