@@ -94,6 +94,10 @@ body {
 
 /* Title */
 .card-title {
+    -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: normal !important; /* Force normal weight */
+  letter-spacing: 0.01em; /* Slight adjustment for better spacing */
   font-family: "Gasoek One", sans-serif;
   font-size: 3.5rem;
   color: black;
@@ -101,6 +105,7 @@ body {
   line-height: 4rem;
   position: relative;
   z-index: 1;
+  
 }
 
 /* Subtitle */
