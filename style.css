@@ -24,6 +24,8 @@ body {
       z-index: 1;
     overflow: visible; /* Key property */
     margin: 0 auto; /* Centers container */
+      perspective: 2500px;/* 3d*/
+  overflow-x: visible;/* 3d*/
 }
 .carousel {
     display: flex;
@@ -33,6 +35,8 @@ body {
     overflow-x: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
+      transform-style: preserve-3d; /* 3d*/
+  transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* 3d*/
 }
 
 .carousel::-webkit-scrollbar {
@@ -49,8 +53,11 @@ body {
     overflow: hidden;
     border-radius: 20px;
     padding: 2rem;
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  transform-origin: center left;
+  position: absolute;
+  transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55), 
+              opacity 0.8s ease; /* 3d*/
+  transform-origin: center center; /* 3d*/
+  box-shadow: 0 25px 50px rgba(0,0,0,0.15); /* 3d*/
         
 }
 
