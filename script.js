@@ -160,7 +160,7 @@ class RisographCarousel {
       this.currentAngle += (this.targetAngle - this.currentAngle) * 0.05;
       this.positionCards();
       
-      if (Math.abs(this.targetAngle - this.currentAngle) > 0.5) {
+      if (Math.abs(this.targetAngle - this.currentAngle) > 0.3) {
         requestAnimationFrame(animate);
       }
     };
