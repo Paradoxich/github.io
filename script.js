@@ -92,64 +92,6 @@ window.addEventListener('resize', () => {
 });
 
 // Start Animation
-update();
 
-
-//Carousel scroll
-document.addEventListener('DOMContentLoaded', () => {
-  const carousel = document.querySelector('.carousel');
-  const cards = gsap.utils.toArray('.card');
-  let currentScroll = 0;
-  let targetScroll = 0;
-  const cardWidth = 400;
-  const gap = 32; // Match CSS gap value
-  
-  // Set initial positions
-gsap.set(cards, {
-  x: (i) => i * (cardWidth + gap),
-  scale: 0.95, // Less scaling for closer appearance
-  opacity: 0.9 // Higher minimum opacity
-});
-
-
-  function handleScroll(e) {
-    targetScroll += (e.deltaY || e.deltaX) * 0.5;
-    targetScroll = gsap.utils.clamp(0, carousel.scrollWidth - carousel.clientWidth, targetScroll);
-    
-    if (!this.isAnimating) {
-      this.isAnimating = true;
-      requestAnimationFrame(animate);
-    }
-  }
-
-  function animate() {
-    currentScroll += (targetScroll - currentScroll) * 0.08;
-    
-    cards.forEach((card, i) => {
-      const cardCenter = i * (cardWidth + gap) - currentScroll + cardWidth/2;
-      const containerCenter = carousel.clientWidth / 2;
-      const distance = Math.abs(cardCenter - containerCenter);
-      
-      // Adjusted scale and opacity ranges
-      const scale = gsap.utils.mapRange(0, 500, 1, 0.9, distance); // Less scaling down
-      const opacity = gsap.utils.mapRange(0, 500, 1, 0.8, distance); // Higher minimum opacity
-      
-      gsap.to(card, {
-        scale: scale,
-        opacity: opacity,
-        duration: 0.6,
-        ease: 'power2.out'
-      });
-    });
-
-    if (Math.abs(targetScroll - currentScroll) > 1) {
-      requestAnimationFrame(animate);
-    } else {
-      this.isAnimating = false;
-    }
-  }
-
-  // Keep existing event listeners
-});
 
      
