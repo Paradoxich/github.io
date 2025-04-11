@@ -26,8 +26,9 @@ body {
 .carousel {
   display: flex;
   gap: 32px; /* Reduced from 30px */
-  padding: 120px 50vw;
-  perspective: 1500px;
+  padding: 120px 0; /* Remove the horizontal padding */
+  justify-content: center; /* Center cards instead */
+
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -ms-overflow-style: none;
