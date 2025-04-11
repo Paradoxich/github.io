@@ -101,74 +101,70 @@ class RisographCarousel {
   constructor() {
     this.carousel = document.querySelector('.carousel');
     this.cards = document.querySelectorAll('.card');
-    this.angle = 0;
     this.currentAngle = 0;
+    this.targetAngle = 0;
+    this.radius = 1000;
     this.isDragging = false;
-    this.startX = 0;
-    this.radius = 500; // Adjust circle radius
-    
     this.init();
-    this.positionCards();
   }
 
   init() {
-    // Mouse events
-    document.addEventListener('wheel', this.handleWheel.bind(this));
-    document.addEventListener('mousedown', this.startDrag.bind(this));
-    document.addEventListener('mousemove', this.drag.bind(this));
-    document.addEventListener('mouseup', this.endDrag.bind(this));
-    
-    // Touch events
-    document.addEventListener('touchstart', this.startDrag.bind(this));
-    document.addEventListener('touchmove', this.drag.bind(this));
-    document.addEventListener('touchend', this.endDrag.bind(this));
+    this.positionCards();
+    this.addEventListeners();
   }
 
   positionCards() {
     const total = this.cards.length;
-    
     this.cards.forEach((card, i) => {
       const angle = (i * (360 / total)) + this.currentAngle;
       const rad = angle * Math.PI / 180;
       
       const x = Math.sin(rad) * this.radius;
       const z = Math.cos(rad) * this.radius;
-    const scale = z > 0 ? 0.8 + (z / this.radius) * 0.2: 0.8;
-      const opacity = z > 0 ? 1 : 0.5;
-
+      const scale = 0.8 + (z / this.radius) * 0.4;
+      
       card.style.transform = `
         translateX(${x}px)
         translateZ(${z}px)
         scale(${scale})
       `;
-      card.style.opacity = opacity;
-      card.style.zIndex = Math.floor(z);
+      card.style.opacity = z > -this.radius/2 ? 1 : 0.6;
     });
   }
 
-  handleWheel(e) {
-    e.preventDefault();
-    this.currentAngle += e.deltaY * 0.05;
-    this.positionCards();
-  }
+  addEventListeners() {
+    // Horizontal scroll
+    document.addEventListener('wheel', e => {
+      e.preventDefault();
+      this.targetAngle += e.deltaX * 0.15;
+      this.animateCards();
+    }, { passive: false });
 
-  startDrag(e) {
-    this.isDragging = true;
-    this.startX = e.clientX || e.touches[0].clientX;
-  }
-
-  drag(e) {
-    if (!this.isDragging) return;
-    e.preventDefault();
+    // Touch events for mobile
+    let touchStartX = 0;
+    document.addEventListener('touchstart', e => {
+      touchStartX = e.touches[0].clientX;
+    });
     
-    const x = e.clientX || e.touches[0].clientX;
-    this.currentAngle += (x - this.startX) * 0.5;
-    this.startX = x;
-    this.positionCards();
+    document.addEventListener('touchmove', e => {
+      e.preventDefault();
+      const delta = e.touches[0].clientX - touchStartX;
+      this.targetAngle += delta * 0.5;
+      touchStartX = e.touches[0].clientX;
+      this.animateCards();
+    });
   }
 
-  endDrag() {
-    this.isDragging = false;
+  animateCards() {
+    const animate = () => {
+      this.currentAngle += (this.targetAngle - this.currentAngle) * 0.1;
+      this.positionCards();
+      
+      if (Math.abs(this.targetAngle - this.currentAngle) > 0.5) {
+        requestAnimationFrame(animate);
+      }
+    };
+    requestAnimationFrame(animate);
   }
 }
 
