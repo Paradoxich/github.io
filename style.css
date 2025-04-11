@@ -44,14 +44,13 @@ body {
   scroll-snap-align: none;
   position: relative;
   padding:32px;
+    display: flex;
+  flex-direction: column;
+  padding: 32px;
+  overflow: hidden;
         
 }
 
-
-.card.scaled {
-  transform: scale(1.15);
-  z-index: 2;
-}
 
 .card::before {
     content: '';
@@ -86,6 +85,43 @@ body {
     color: rgba(255,255,255,0.9);
     max-width: 80%;
 }
+
+
+/* Image styling */
+.card-image {
+  width: 100%;
+  margin: 16px 0 24px 0;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.card-image img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  height: 180px;
+}
+
+/* Two-column text layout */
+.card-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.column p {
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: black;
+  margin: 0;
+}
+
 
 .card:nth-child(1) { background: #FF6B6B; }
 .card:nth-child(2) { background: #4ECDC4; }
