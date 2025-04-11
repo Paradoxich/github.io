@@ -61,7 +61,7 @@ body {
 
 /* Hover Effect */
 .card:hover {
-  transform: translateX(0) scale(1.1) translateZ(20px) !important;
+  transform: translateX(0) scale(1.2) translateZ(20px) !important;
   z-index: 2;
   transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1.2) !important;
 }
