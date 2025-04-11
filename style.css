@@ -26,8 +26,8 @@ body {
 }
 .carousel {
   position: absolute;
-  left: 50%;
-  top: 50%;
+  left: 20%;
+  top: 20%;
   transform-style: preserve-3d;
   transition: transform 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
