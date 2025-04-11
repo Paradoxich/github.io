@@ -26,7 +26,7 @@ body {
 .carousel {
   display: flex;
   gap: 32px; /* Reduced from 30px */
-  padding: 120px 50vw
+  padding: 120px 50vw;
   perspective: 1500px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
