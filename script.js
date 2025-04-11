@@ -103,7 +103,7 @@ class RisographCarousel {
     this.cards = document.querySelectorAll('.card');
     this.currentAngle = 0;
     this.targetAngle = 0;
-    this.radius = 1000;
+    this.radius = 500;
     this.isDragging = false;
     this.init();
   }
@@ -121,7 +121,7 @@ class RisographCarousel {
       
       const x = Math.sin(rad) * this.radius;
       const z = Math.cos(rad) * this.radius;
-      const scale = 0.8 + (z / this.radius) * 0.4;
+       const scale = 0.7 + 0.3 * (z + this.radius) / (2 * this.radius);
       
       card.style.transform = `
         translateX(${x}px)
