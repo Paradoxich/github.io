@@ -26,7 +26,8 @@ body {
 .carousel {
   display: flex;
   gap: 30px;
-  padding: 120px 120px;
+   padding: 120px 50vw; /* Center cards horizontally */
+  perspective: 1500px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -ms-overflow-style: none;
@@ -41,9 +42,12 @@ body {
   flex: 0 0 400px;
   height: 500px;
   border-radius: 20px;
-  scroll-snap-align: none;
   position: relative;
   padding:32px;
+    scroll-snap-align: none;
+  transition: none; /* Let GSAP handle transitions */
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
         
 }
 
