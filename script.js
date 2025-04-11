@@ -40,9 +40,9 @@ document.addEventListener('mouseleave', () => {
 
 // Physics Parameters
 const physics = {
-    repulsion: 0.15,
-    returnStrength: 0.05,
-    friction: 0.85
+    repulsion: 0.12,
+    returnStrength: 0.04,
+    friction: 0.88
 };
 
 // Animation Loop
