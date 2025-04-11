@@ -56,9 +56,7 @@ body {
   opacity: 0;
   transform: translateX(100%) scale(0.8);
   animation: cardEntry 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-  transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
-  will-change: transform;
-  transform-style: flat; /* Prevents Firefox compositing issues */
+
   transform-origin: center;
   backface-visibility: hidden;
   perspective: 1000px;
@@ -68,16 +66,13 @@ body {
 .card-focus {
   transform: scale(1.1);
   z-index: 5;
+    transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .card:hover {
   transform: scale(1.1);
   z-index: 10;
-}
-
-.card-focus:hover {
-  transform: scale(1.2);
-  z-index: 10;
+    transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 
