@@ -40,12 +40,13 @@ body {
 }
 
 .card {
-  flex: 0 0 400px;
-  height: 500px;
+  flex: 0 0 400px; /* Must match cardWidth in JS */
+  margin: 0; /* Eliminate any additional spacing */
+  padding: 32px; /* Keep padding internal only */
+  height: 500px;  
   border-radius: 20px;
   position: relative;
-  padding:32px;
-    scroll-snap-align: none;
+  scroll-snap-align: none;
   transition: none !important;
   will-change: transform, opacity;
         
