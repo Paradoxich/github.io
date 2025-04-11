@@ -70,8 +70,7 @@ body {
 
 /* Adjust existing hover effect to work with our new class */
 .card:hover {
-  transform: scale(1.2);
-  z-index: 2;
+padding:60px;
 }
 
 
