@@ -107,3 +107,64 @@ window.addEventListener('resize', handleResize);
 
 // Start Animation
 update();
+
+
+
+// Keyboard navigation for carousel
+document.addEventListener('keydown', function(e) {
+  const carousel = document.querySelector('.carousel');
+  const cards = carousel.querySelectorAll('.card');
+  
+  // Get currently visible card (approximation based on scroll position)
+  const carouselRect = carousel.getBoundingClientRect();
+  const carouselCenter = carouselRect.left + carouselRect.width / 2;
+  
+  // Find the card closest to center
+  let closestCard = cards[0];
+  let closestDistance = Infinity;
+  let currentIndex = 0;
+  
+  cards.forEach((card, index) => {
+    const cardRect = card.getBoundingClientRect();
+    const cardCenter = cardRect.left + cardRect.width / 2;
+    const distance = Math.abs(cardCenter - carouselCenter);
+    
+    if (distance < closestDistance) {
+      closestDistance = distance;
+      closestCard = card;
+      currentIndex = index;
+    }
+  });
+  
+  // Handle different key presses
+  switch(e.key) {
+    case 'ArrowRight':
+      // Move to next card
+      if (currentIndex < cards.length - 1) {
+        cards[currentIndex + 1].scrollIntoView({ behavior: 'smooth', inline: 'center' });
+      }
+      e.preventDefault();
+      break;
+      
+    case 'ArrowLeft':
+      // Move to previous card
+      if (currentIndex > 0) {
+        cards[currentIndex - 1].scrollIntoView({ behavior: 'smooth', inline: 'center' });
+      }
+      e.preventDefault();
+      break;
+      
+    case 'Home':
+      // Move to first card
+      cards[0].scrollIntoView({ behavior: 'smooth', inline: 'center' });
+      e.preventDefault();
+      break;
+      
+    case 'End':
+      // Move to last card
+      cards[cards.length - 1].scrollIntoView({ behavior: 'smooth', inline: 'center' });
+      e.preventDefault();
+      break;
+  }
+});
+
