@@ -133,7 +133,7 @@ class RisographCarousel {
       
       const x = Math.sin(rad) * this.radius;
       const z = Math.cos(rad) * this.radius;
-      const scale = z > 0 ? 1 + (z / this.radius) * 0.1 : 1;
+    const scale = z > 0 ? 0.8 + (z / this.radius) * 0.2: 0.8;
       const opacity = z > 0 ? 1 : 0.5;
 
       card.style.transform = `
