@@ -40,11 +40,9 @@ document.addEventListener('mouseleave', () => {
 
 // Physics Parameters
 const physics = {
-// Find the physics object and modify these values:
-const physics = {
-    repulsion: 0.12, // Reduced from 0.15 (weaker initial push)
-    returnStrength: 0.04, // Reduced from 0.05 (slower return)
-    friction: 0.88 // Increased from 0.85 (faster slowdown)
+    repulsion: 0.15,
+    returnStrength: 0.05,
+    friction: 0.85
 };
 
 // Animation Loop
@@ -96,16 +94,16 @@ window.addEventListener('resize', () => {
 // Start Animation
 update();
 
+// Your existing carousel JavaScript below
+// ...
+
+
 
 const carousel = document.querySelector('.carousel');
 const prevButton = document.querySelector('.prev');
 const nextButton = document.querySelector('.next');
 const cardWidth = 400; // Should match your CSS card width
 const gap = 30;
-
-
-// Your existing carousel JavaScript below
-// ...
 
 
 
