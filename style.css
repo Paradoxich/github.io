@@ -107,7 +107,7 @@ body {
 /* Two-column text layout */
 .card-columns {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 0.3fr 0.3fr;
   gap: 16px;
   position: relative;
   z-index: 1;
