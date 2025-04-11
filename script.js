@@ -167,3 +167,112 @@ document.addEventListener('keydown', function(e) {
       break;
   }
 });
+
+
+
+
+/*CARD HOVER*/
+document.addEventListener('DOMContentLoaded', function() {
+  const carousel = document.querySelector('.carousel');
+  const cards = document.querySelectorAll('.card');
+  let animationFrame;
+  
+  // Fix 1: First and last card centering
+  function updateCarouselPadding() {
+    const viewportWidth = window.innerWidth;
+    const cardWidth = cards[0].offsetWidth;
+    const paddingRequired = (viewportWidth - cardWidth) / 2;
+    
+    carousel.style.paddingLeft = `${paddingRequired}px`;
+    carousel.style.paddingRight = `${paddingRequired}px`;
+  }
+  
+  // Fix 3: Smooth scaling animation
+  function smoothScaleCards() {
+    if (animationFrame) {
+      cancelAnimationFrame(animationFrame);
+    }
+    
+    animationFrame = requestAnimationFrame(() => {
+      const carouselRect = carousel.getBoundingClientRect();
+      const carouselCenter = carouselRect.left + carouselRect.width / 2;
+      
+      cards.forEach(card => {
+        const cardRect = card.getBoundingClientRect();
+        const cardCenter = cardRect.left + cardRect.width / 2;
+        const distance = Math.abs(cardCenter - carouselCenter);
+        
+        // Clear any previous transform style to avoid conflicts
+        card.style.transform = '';
+        
+        // Apply scaling based on distance from center
+        if (distance < 100) {
+          card.classList.add('card-focus');
+        } else {
+          card.classList.remove('card-focus');
+        }
+      });
+    });
+  }
+  
+  // Helper: Debounce function
+  function debounce(func, wait) {
+    let timeout;
+    return function() {
+      clearTimeout(timeout);
+      timeout = setTimeout(func, wait);
+    };
+  }
+  
+  // Initialize
+  updateCarouselPadding();
+  smoothScaleCards();
+  
+  // Add event listeners
+  window.addEventListener('resize', updateCarouselPadding);
+  carousel.addEventListener('scroll', debounce(smoothScaleCards, 16)); // ~60fps
+  
+  // Add keyboard navigation with scaling
+  document.addEventListener('keydown', function(e) {
+    const carouselRect = carousel.getBoundingClientRect();
+    const carouselCenter = carouselRect.left + carouselRect.width / 2;
+    
+    let currentCard = null;
+    let currentIndex = -1;
+    let minDistance = Infinity;
+    
+    cards.forEach((card, index) => {
+      const cardRect = card.getBoundingClientRect();
+      const cardCenter = cardRect.left + cardRect.width / 2;
+      const distance = Math.abs(cardCenter - carouselCenter);
+      
+      if (distance < minDistance) {
+        minDistance = distance;
+        currentCard = card;
+        currentIndex = index;
+      }
+    });
+    
+    switch(e.key) {
+      case 'ArrowRight':
+        if (currentIndex < cards.length - 1) {
+          cards[currentIndex + 1].scrollIntoView({
+            behavior: 'smooth',
+            inline: 'center'
+          });
+        }
+        e.preventDefault();
+        break;
+      case 'ArrowLeft':
+        if (currentIndex > 0) {
+          cards[currentIndex - 1].scrollIntoView({
+            behavior: 'smooth',
+            inline: 'center'
+          });
+        }
+        e.preventDefault();
+        break;
+    }
+  });
+});
+
